@@ -7,6 +7,8 @@ import Grid from "@mui/material/Grid";
 import Divider from "@mui/material/Divider";
 import EmailIcon from "@mui/icons-material/Email";
 import LanguageIcon from "@mui/icons-material/Language";
+import ectiLogo from "../../assets/ECTI-logo.jpg";
+
 
 function Footer() {
   return (
@@ -69,6 +71,16 @@ function Footer() {
             <Typography variant="h6" color="primary.main" gutterBottom>
               Organized By
             </Typography>
+            <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
+              <img
+                src={ectiLogo}
+                alt="ECTI Logo"
+                style={{
+                  height: "50px",
+                  marginRight: "12px",
+                }}
+              />
+            </Box>
             <Typography variant="body2" color="text.secondary">
               Electrical Engineering/Electronics, Computer, Telecommunications
               and Information Technology Association (ECTI), Thailand
@@ -88,10 +100,11 @@ function Footer() {
         >
           <Typography variant="body2" color="text.secondary">
             {"Copyright © "}
-            <Link color="inherit" href="https://www.isap2027.org/">
-              ISAP2027 Organizing Committee
-            </Link>{" "}
-            {new Date().getFullYear()}
+          
+            {new Date().getFullYear()}{" "}
+             <Link color="inherit" href="https://www.isap2027.org/">
+              ISAP2027
+            </Link>
           </Typography>
 
           <Box sx={{ display: "flex", gap: 2, mt: { xs: 2, sm: 0 } }}>

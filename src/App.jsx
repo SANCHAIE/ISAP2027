@@ -15,35 +15,69 @@ import TechnicalSponsors from "./components/Sections/TechnicalSponsors.jsx";
 
 import pattayaBg from "./assets/pattaya-bg.jpg";
 import submenuBg from "./assets/submenu-bg.jpg";
+import isapLogo from "./assets/isap2027-logo.png"; // Add logo import
 
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#1976d2",
-      dark: "#115293",
-      light: "#4791db",
+      main: "#2c5f7c", // Deep blue from poster
+      dark: "#1e4256",
+      light: "#4a8db0",
     },
     secondary: {
-      main: "#f5b518",
+      main: "#5fb3d0", // Light blue/teal from poster
+      dark: "#4a8fa8",
+      light: "#7dc4d8",
+    },
+    tertiary: {
+      main: "#f0b94d", // Yellow accent from poster
     },
     background: {
-      default: "#f4f6f8",
+      default: "#f8fafe", // Very light blue background
       paper: "#ffffff",
+    },
+    text: {
+      primary: "#1a3d4f", // Dark blue text
+      secondary: "#4a6973",
     },
   },
   typography: {
-    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+    fontFamily: '"Inter", "Helvetica Neue", "Arial", sans-serif',
     h1: {
-      fontSize: "2.5rem",
+      fontSize: "3rem",
       fontWeight: 700,
+      letterSpacing: "-0.02em",
     },
     h2: {
-      fontSize: "2rem",
+      fontSize: "2.25rem",
       fontWeight: 600,
+      letterSpacing: "-0.01em",
     },
     h3: {
-      fontSize: "1.75rem",
+      fontSize: "1.875rem",
+      fontWeight: 600,
+      letterSpacing: "-0.01em",
+    },
+    h4: {
+      fontSize: "1.5rem",
+      fontWeight: 600,
+      letterSpacing: "-0.005em",
+    },
+    h5: {
+      fontSize: "1.25rem",
       fontWeight: 500,
+    },
+    h6: {
+      fontSize: "1.125rem",
+      fontWeight: 500,
+    },
+    body1: {
+      fontSize: "1rem",
+      lineHeight: 1.6,
+    },
+    body2: {
+      fontSize: "0.875rem",
+      lineHeight: 1.5,
     },
   },
   components: {
@@ -54,6 +88,57 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           textTransform: "none",
+          borderRadius: "8px",
+          fontWeight: 600,
+          padding: "10px 24px",
+        },
+        contained: {
+          backgroundColor: "#2c5f7c",
+          "&:hover": {
+            backgroundColor: "#1e4256",
+          },
+        },
+        outlined: {
+          borderColor: "#2c5f7c",
+          color: "#2c5f7c",
+          "&:hover": {
+            borderColor: "#1e4256",
+            backgroundColor: "rgba(44, 95, 124, 0.04)",
+          },
+        },
+      },
+    },
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          borderRadius: "12px",
+          boxShadow: "0 2px 12px rgba(44, 95, 124, 0.1)",
+          "&:hover": {
+            boxShadow: "0 4px 20px rgba(44, 95, 124, 0.15)",
+          },
+        },
+      },
+    },
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          borderRadius: "8px",
+        },
+      },
+    },
+    MuiTypography: {
+      styleOverrides: {
+        h1: {
+          color: "#1a3d4f",
+        },
+        h2: {
+          color: "#1a3d4f",
+        },
+        h3: {
+          color: "#1a3d4f",
+        },
+        h4: {
+          color: "#2c5f7c",
         },
       },
     },
@@ -85,7 +170,7 @@ function App() {
       return (
         <>
           <ImportantDates />
-          <ConferenceTopics />
+          <ConferenceTopics onNavigate={handleNavigate} />
           <VenueInfo />
           <OrganizingCommittee />
           <TechnicalSponsors />
@@ -101,7 +186,7 @@ function App() {
       case "technical-co-sponsors":
         return <TechnicalSponsors fullPage />;
       case "conference-topics":
-        return <ConferenceTopics fullPage />;
+        return <ConferenceTopics fullPage onNavigate={handleNavigate} />;
       case "about-isap":
         return (
           <Container maxWidth="lg" sx={{ py: 4 }}>
@@ -137,6 +222,7 @@ function App() {
           />
           <HeroSection
             isHomePage={isHomePage}
+            logo={isapLogo}
             title={
               isHomePage
                 ? "2027 INTERNATIONAL SYMPOSIUM ON ANTENNAS AND PROPAGATION"

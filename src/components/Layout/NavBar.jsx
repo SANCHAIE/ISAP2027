@@ -19,6 +19,7 @@ import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
+import isapLogo from "../../assets/isap2027-logo.png";
 
 const menuItems = [
   { id: "home", label: "Home", hasSubmenu: false },
@@ -176,25 +177,45 @@ function NavBar({ onNavigate }) {
     <AppBar
       position="sticky"
       sx={{
-        backgroundColor: "background.paper",
-        color: "text.primary",
-        boxShadow: 3,
+        background: "linear-gradient(135deg, #2c5f7c 0%, #4a8db0 100%)",
+        color: "white",
+        boxShadow: "0 2px 12px rgba(44, 95, 124, 0.3)",
+        borderRadius: 0,
+        "& .MuiToolbar-root": {
+          borderRadius: 0,
+        },
       }}
     >
-      <Toolbar>
-        <Typography
-          variant="h6"
-          component="div"
+      <Toolbar sx={{ borderRadius: 0 }}>
+        <Box
           sx={{
             flexGrow: 1,
+            display: "flex",
+            alignItems: "center",
             cursor: "pointer",
-            fontWeight: "bold",
-            color: "primary.main",
           }}
           onClick={handleHomeClick}
         >
-          ISAP 2027
-        </Typography>
+          <img
+            src={isapLogo}
+            alt="ISAP 2027 Logo"
+            style={{
+              height: "40px",
+              marginRight: "12px",
+              filter: "brightness(1.1)",
+            }}
+          />
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{
+              fontWeight: "bold",
+              color: "white",
+            }}
+          >
+            ISAP2027
+          </Typography>
+        </Box>
 
         {/* Mobile menu button */}
         {isMobile && (
@@ -204,13 +225,14 @@ function NavBar({ onNavigate }) {
             color="inherit"
             aria-label="menu"
             onClick={toggleDrawer(true)}
+            sx={{ color: "white" }}
           >
             <MenuIcon />
           </IconButton>
         )}
 
         {!isMobile && (
-          <Box>
+          <Box sx={{ display: "flex" }}>
             {menuItems.map((item) => (
               <Button
                 key={item.id}
@@ -229,9 +251,10 @@ function NavBar({ onNavigate }) {
                 aria-haspopup="true"
                 aria-expanded={openMenuId === item.id ? "true" : undefined}
                 sx={{
-                  marginLeft: 2,
+                  marginLeft: 1,
+                  color: "white",
                   "&:hover": {
-                    backgroundColor: "action.hover",
+                    backgroundColor: "rgba(255, 255, 255, 0.1)",
                     transform: "scale(1.02)",
                     transition:
                       "transform 0.2s ease-in-out, background-color 0.2s ease-in-out",

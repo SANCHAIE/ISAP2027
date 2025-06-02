@@ -1,7 +1,5 @@
 import React from "react";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
+import { Box, Typography, Container } from "@mui/material";
 
 /**
  * @param {object} props
@@ -9,68 +7,91 @@ import Container from "@mui/material/Container";
  * @param {string} props.subtitle
  * @param {string | null} props.backgroundImageUrl
  * @param {boolean} props.isHomePage
+ * @param {string} props.logo
  */
-function HeroSection({ title, subtitle, backgroundImageUrl, isHomePage }) {
+function HeroSection({
+  title,
+  subtitle,
+  backgroundImageUrl,
+  isHomePage,
+  logo,
+}) {
   return (
     <Box
       sx={{
-        width: "100%",
-        height: isHomePage ? "60vh" : "25vh",
-        minHeight: isHomePage ? 300 : 150,
-        backgroundColor: isHomePage ? "primary.dark" : "primary.main",
-        backgroundImage: backgroundImageUrl
-          ? `url(${backgroundImageUrl})`
-          : "none",
+        position: "relative",
+        height: isHomePage ? "70vh" : "40vh",
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${backgroundImageUrl})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        position: "relative",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        color: "#fff",
-        textAlign: "center",
-
-        "&::before": isHomePage
-          ? {
-              content: '""',
-              position: "absolute",
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              backgroundColor: "rgba(0, 0, 0, 0.5)",
-              zIndex: 1,
-            }
-          : {},
+        color: "white",
       }}
     >
-      <Container maxWidth="lg" sx={{ position: "relative", zIndex: 2 }}>
-        {" "}
-        <Typography
-          variant={isHomePage ? "h1" : "h3"}
-          component="h1"
-          gutterBottom
+      <Container maxWidth="lg">
+        <Box
           sx={{
-            fontWeight: isHomePage ? 700 : 500,
-            textTransform: isHomePage ? "uppercase" : "none",
-            letterSpacing: isHomePage ? "0.05em" : "normal",
+            textAlign: "center",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: 3,
           }}
         >
-          {title}
-        </Typography>
-        {subtitle && (
+          {logo && (
+            <Box
+              component="img"
+              src={logo}
+              alt="ISAP Logo"
+              sx={{
+                height: isHomePage ? "120px" : "80px",
+                width: "auto",
+                filter: "brightness(1.1) contrast(1.1)",
+              }}
+            />
+          )}
           <Typography
-            variant="h5"
-            component="p"
+            variant={isHomePage ? "h1" : "h2"}
             sx={{
-              mt: 2,
-              fontWeight: 500,
-              color: isHomePage ? "secondary.main" : "inherit",
+              fontWeight: 700,
+              textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)",
+              color: "white",
+              letterSpacing: "0.02em",
             }}
           >
-            {subtitle}
+            {title}
           </Typography>
-        )}
+          {subtitle && (
+            <Box sx={{ textAlign: "center" }}>
+              <Typography
+                variant="h5"
+                sx={{
+                  fontWeight: 600,
+                  textShadow: "1px 1px 3px rgba(0, 0, 0, 0.7)",
+                  color: "rgba(255, 255, 255, 0.95)",
+                  letterSpacing: "0.1em",
+                  mb: 1,
+                }}
+              >
+                PATTAYA, THAILAND
+              </Typography>
+              <Typography
+                variant="h4"
+                sx={{
+                  fontWeight: 700,
+                  textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)",
+                  color: "#f0b94d",
+                  letterSpacing: "0.05em",
+                  textTransform: "uppercase",
+                }}
+              >
+                NOV 9 TUESDAY - 12 FRIDAY, 2027
+              </Typography>
+            </Box>
+          )}
+        </Box>
       </Container>
     </Box>
   );
